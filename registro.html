@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="es" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Crear cuenta - Gymratstore</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <link href="css/styles.css" rel="stylesheet" />
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-gr sticky-top" data-bs-theme="dark">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">GYM<span>RAT</span>STORE</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navGr">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navGr">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="productos.html">Productos</a></li>
+          <li class="nav-item"><a class="nav-link" href="nosotros.html">Nosotros</a></li>
+          <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+          <li class="nav-item d-none" data-rol="Administrador,Vendedor"><a class="nav-link" href="admin/index.html"><i class="bi bi-speedometer2 me-1"></i>Panel admin</a></li>
+        </ul>
+        <ul class="navbar-nav align-items-lg-center gap-lg-2">
+          <li class="nav-item d-none" data-sesion="fuera"><a class="nav-link active" href="login.html">Iniciar sesión</a></li>
+          <li class="nav-item d-none" data-sesion="fuera"><a class="btn btn-brand btn-sm" href="registro.html">Crear cuenta</a></li>
+          <li class="nav-item dropdown d-none" data-sesion="dentro">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+              <i class="bi bi-person-circle me-1"></i><span data-sesion-nombre></span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="#" data-accion="cerrar-sesion" data-ir="index.html">Cerrar sesión</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link gr-cart-icon" href="carrito.html">
+              <i class="bi bi-cart3"></i>
+              <span class="gr-carrito-badge d-none">0</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container py-5">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="gr-card p-4 p-md-5">
+          <h1 class="mb-1">Crear cuenta</h1>
+          <p class="text-muted-gr mb-4">Regístrate para contratar un plan y comprar suplementos.</p>
+
+          <form id="formRegistro" novalidate>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label" for="run">RUN (sin puntos ni guion)</label>
+                <input type="text" class="form-control" id="run" maxlength="9" placeholder="193456782" />
+                <div class="invalid-feedback"></div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="correo">Correo electrónico</label>
+                <input type="text" class="form-control" id="correo" maxlength="100" placeholder="tu.correo@gmail.com" />
+                <div class="invalid-feedback"></div>
+                <div class="form-text text-muted-gr">Dominios aceptados: @duoc.cl, @profesor.duoc.cl, @gmail.com</div>
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label" for="nombre">Nombre</label>
+                <input type="text" class="form-control" id="nombre" maxlength="50" />
+                <div class="invalid-feedback"></div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="apellidos">Apellidos</label>
+                <input type="text" class="form-control" id="apellidos" maxlength="100" />
+                <div class="invalid-feedback"></div>
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label" for="clave">Contraseña</label>
+                <input type="password" class="form-control" id="clave" maxlength="10" />
+                <div class="invalid-feedback"></div>
+                <div class="form-text text-muted-gr">Entre 4 y 10 caracteres.</div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="fechaNacimiento">Fecha de nacimiento (opcional)</label>
+                <input type="date" class="form-control" id="fechaNacimiento" />
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label" for="region">Región</label>
+                <select class="form-select" id="region">
+                  <option value="">Selecciona una región</option>
+                </select>
+                <div class="invalid-feedback"></div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="comuna">Comuna</label>
+                <select class="form-select" id="comuna" disabled>
+                  <option value="">Selecciona una comuna</option>
+                </select>
+                <div class="invalid-feedback"></div>
+              </div>
+
+              <div class="col-12">
+                <label class="form-label" for="direccion">Dirección</label>
+                <input type="text" class="form-control" id="direccion" maxlength="300" />
+                <div class="invalid-feedback"></div>
+              </div>
+
+              <div class="col-12">
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="consentimiento" />
+                  <label class="form-check-label small text-muted-gr" for="consentimiento">
+                    Autorizo el tratamiento de mis datos personales según la
+                    <a href="politica-privacidad.html" target="_blank">Política de Privacidad</a> de Gymratstore.
+                  </label>
+                  <div class="invalid-feedback"></div>
+                </div>
+              </div>
+            </div>
+
+            <div id="alertaRegistro" class="alert alert-danger mt-4 d-none"></div>
+            <div id="exitoRegistro" class="alert alert-success mt-4 d-none"></div>
+
+            <button type="submit" class="btn btn-brand btn-lg w-100 mt-3">Crear cuenta</button>
+            <p class="text-center small text-muted-gr mt-3 mb-0">
+              ¿Ya tienes cuenta? <a href="login.html">Inicia sesión aquí</a>.
+            </p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="gr-footer">
+    <div class="container">
+      <p class="small text-center mb-0">© <span data-anio-actual></span> Gymratstore. Proyecto académico.</p>
+    </div>
+  </footer>
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" id="grToastContainer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/mock-data.js"></script>
+  <script src="js/validaciones.js"></script>
+  <script src="js/sesion.js"></script>
+  <script src="js/carrito.js"></script>
+  <script src="js/comun.js"></script>
+  <script src="js/registro.js"></script>
+</body>
+</html>
