@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Productos - Gymratstore</title>
+  <title>Producto - Gymratstore</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
@@ -49,48 +49,53 @@
   </nav>
 
   <main class="container py-5">
-    <div class="gr-section-titulo">
-      <div>
-        <h1 class="mb-1">Productos</h1>
-        <p class="text-muted-gr mb-0">Planes de membresía y suplementos, en un solo catálogo.</p>
-      </div>
-    </div>
-
-    <div class="gr-card p-3 mb-4">
-      <div class="row g-2 align-items-center">
-        <div class="col-12 col-lg-auto">
-          <div class="btn-group" role="group" aria-label="Filtrar por tipo">
-            <input type="radio" class="btn-check" name="filtroTipo" id="filtroTodos" value="" checked />
-            <label class="btn btn-outline-light btn-sm" for="filtroTodos">Todos</label>
-            <input type="radio" class="btn-check" name="filtroTipo" id="filtroPlanes" value="Plan" />
-            <label class="btn btn-outline-light btn-sm" for="filtroPlanes">Planes</label>
-            <input type="radio" class="btn-check" name="filtroTipo" id="filtroSuplementos" value="Suplemento" />
-            <label class="btn btn-outline-light btn-sm" for="filtroSuplementos">Suplementos</label>
+    <div id="detalleProducto">
+      <a href="productos.html" class="small d-inline-block mb-3"><i class="bi bi-arrow-left me-1"></i>Volver al catálogo</a>
+      <div class="row g-4">
+        <div class="col-md-5">
+          <div class="gr-product-media rounded-4" style="aspect-ratio: 1; font-size: 5rem" id="detalleIcono">
+            <i class="bi bi-box-seam"></i>
           </div>
         </div>
-        <div class="col-6 col-lg-3">
-          <select class="form-select form-select-sm" id="filtroCategoria">
-            <option value="">Todas las categorías</option>
-          </select>
-        </div>
-        <div class="col-6 col-lg-3">
-          <input type="text" class="form-control form-control-sm" id="filtroTexto" placeholder="Buscar por nombre..." />
-        </div>
-        <div class="col-12 col-lg-auto d-none" id="botonLimpiarFiltros">
-          <button type="button" class="btn btn-sm btn-brand-outline" id="btnLimpiarFiltros">
-            <i class="bi bi-x-circle me-1"></i>Limpiar filtros
-          </button>
+        <div class="col-md-7">
+          <span class="gr-badge-tipo mb-2" id="detalleBadgeTipo"></span>
+          <h1 id="detalleNombre" class="mb-2"></h1>
+          <p class="text-muted-gr" id="detalleDescripcion"></p>
+          <div class="gr-precio fs-3 mb-2" id="detallePrecio"></div>
+          <p class="small text-muted-gr" id="detalleStock"></p>
+
+          <div class="row g-2 align-items-end mt-3" id="filaCantidad">
+            <div class="col-auto">
+              <label class="form-label" for="cantidad">Cantidad</label>
+              <input type="number" class="form-control" id="cantidad" value="1" min="1" style="width: 6rem" />
+            </div>
+            <div class="col-auto">
+              <button type="button" class="btn btn-brand btn-lg" id="btnAgregar">
+                <i class="bi bi-cart-plus me-1"></i>Agregar al carrito
+              </button>
+            </div>
+          </div>
+          <div class="invalid-feedback d-block" id="errorCantidad"></div>
+          <p class="small text-muted-gr mt-2 d-none" id="avisoPlanCuenta">
+            <i class="bi bi-info-circle me-1"></i>Puedes agregarlo al carrito ahora; para pagarlo vas a necesitar
+            <a href="login.html">iniciar sesión</a> o <a href="registro.html">crear una cuenta</a>.
+          </p>
         </div>
       </div>
     </div>
 
-    <div class="row g-3" id="gridProductos"></div>
-
-    <div class="gr-empty-state d-none" id="estadoSinResultados">
-      <i class="bi bi-search"></i>
-      <p class="mt-3 mb-2">No encontramos productos con esos filtros.</p>
-      <button type="button" class="btn btn-sm btn-brand-outline" id="btnLimpiarFiltrosVacio">Limpiar filtros</button>
+    <div class="gr-empty-state d-none" id="detalleNoEncontrado">
+      <i class="bi bi-box-seam"></i>
+      <p class="mt-3 mb-2">No encontramos este producto.</p>
+      <a href="productos.html" class="btn btn-sm btn-brand-outline">Volver al catálogo</a>
     </div>
+
+    <section class="mt-5" id="seccionRelacionados">
+      <div class="gr-section-titulo">
+        <h2 class="mb-0">También te puede interesar</h2>
+      </div>
+      <div class="row g-3" id="gridRelacionados"></div>
+    </section>
   </main>
 
   <footer class="gr-footer">
@@ -108,6 +113,6 @@
   <script src="js/carrito.js"></script>
   <script src="js/producto-ui.js"></script>
   <script src="js/comun.js"></script>
-  <script src="js/productos.js"></script>
+  <script src="js/producto-detalle.js"></script>
 </body>
 </html>
