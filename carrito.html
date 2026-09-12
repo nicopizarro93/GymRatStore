@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="es" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Carrito - Gymratstore</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <link href="css/styles.css" rel="stylesheet" />
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-gr sticky-top" data-bs-theme="dark">
+    <div class="container">
+      <a class="navbar-brand" href="index.html">GYM<span>RAT</span>STORE</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navGr">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navGr">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="productos.html">Productos</a></li>
+          <li class="nav-item"><a class="nav-link" href="nosotros.html">Nosotros</a></li>
+          <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="contacto.html">Contacto</a></li>
+          <li class="nav-item d-none" data-rol="Administrador,Vendedor"><a class="nav-link" href="admin/index.html"><i class="bi bi-speedometer2 me-1"></i>Panel admin</a></li>
+        </ul>
+        <ul class="navbar-nav align-items-lg-center gap-lg-2">
+          <li class="nav-item d-none" data-sesion="fuera"><a class="nav-link" href="login.html">Iniciar sesión</a></li>
+          <li class="nav-item d-none" data-sesion="fuera"><a class="btn btn-brand btn-sm" href="registro.html">Crear cuenta</a></li>
+          <li class="nav-item dropdown d-none" data-sesion="dentro">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+              <i class="bi bi-person-circle me-1"></i><span data-sesion-nombre></span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="#" data-accion="cerrar-sesion" data-ir="index.html">Cerrar sesión</a></li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link gr-cart-icon active" href="carrito.html">
+              <i class="bi bi-cart3"></i>
+              <span class="gr-carrito-badge d-none">0</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container py-5">
+    <h1 class="mb-4">Tu carrito</h1>
+
+    <div class="row g-4" id="vistaCarrito">
+      <div class="col-lg-8">
+        <div class="d-flex flex-column gap-3" id="listaCarrito"></div>
+      </div>
+      <div class="col-lg-4">
+        <div class="gr-card p-4 gr-cart-summary">
+          <h5>Resumen</h5>
+          <div class="d-flex justify-content-between text-muted-gr small mb-2">
+            <span>Productos</span>
+            <span id="resumenCantidad">0</span>
+          </div>
+          <hr class="border-secondary" />
+          <div class="d-flex justify-content-between fs-5 mb-3">
+            <strong>Total</strong>
+            <strong class="text-accent-lime" id="resumenTotal">$0</strong>
+          </div>
+
+          <div class="alert alert-dark border d-none" id="avisoPlanRequiereCuenta">
+            <i class="bi bi-lock me-1 text-accent-red"></i>
+            Tu carrito incluye un plan de gimnasio: necesitas una cuenta para completar esa compra (los suplementos sí se pueden comprar como invitado).
+            <div class="d-flex gap-2 mt-2">
+              <a href="login.html?volver=carrito.html" class="btn btn-sm btn-brand-outline">Iniciar sesión</a>
+              <a href="registro.html" class="btn btn-sm btn-brand">Crear cuenta</a>
+            </div>
+          </div>
+
+          <div class="d-none" id="bloqueInvitado">
+            <p class="small text-muted-gr mb-2">
+              <i class="bi bi-person-check me-1"></i>Comprando como invitado. Solo necesitamos estos datos para tu pedido.
+              <a href="login.html?volver=carrito.html">¿Tienes cuenta? Inicia sesión</a>.
+            </p>
+            <div class="mb-2">
+              <label class="form-label small" for="invitadoNombre">Nombre completo</label>
+              <input type="text" class="form-control form-control-sm" id="invitadoNombre" maxlength="100" />
+              <div class="invalid-feedback"></div>
+            </div>
+            <div class="mb-2">
+              <label class="form-label small" for="invitadoCorreo">Correo electrónico</label>
+              <input type="text" class="form-control form-control-sm" id="invitadoCorreo" maxlength="100" />
+              <div class="invalid-feedback"></div>
+            </div>
+            <div class="mb-3">
+              <label class="form-label small" for="invitadoDireccion">Dirección de entrega</label>
+              <input type="text" class="form-control form-control-sm" id="invitadoDireccion" maxlength="300" />
+              <div class="invalid-feedback"></div>
+            </div>
+          </div>
+
+          <button type="button" class="btn btn-brand btn-lg w-100" id="btnConfirmar">Confirmar compra</button>
+          <a href="productos.html" class="btn btn-outline-light w-100 mt-2">Seguir comprando</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="gr-empty-state d-none" id="carritoVacio">
+      <i class="bi bi-cart-x"></i>
+      <p class="mt-3 mb-2">Tu carrito está vacío.</p>
+      <a href="productos.html" class="btn btn-sm btn-brand-outline">Ver productos</a>
+    </div>
+
+    <div class="gr-card p-5 text-center d-none" id="confirmacionCompra">
+      <i class="bi bi-check-circle text-accent-lime" style="font-size: 3rem"></i>
+      <h3 class="mt-3">¡Compra confirmada!</h3>
+      <p class="text-muted-gr" id="confirmacionDetalle"></p>
+      <a href="index.html" class="btn btn-brand mt-2">Volver al inicio</a>
+    </div>
+  </main>
+
+  <footer class="gr-footer">
+    <div class="container">
+      <p class="small text-center mb-0">© <span data-anio-actual></span> Gymratstore. Proyecto académico.</p>
+    </div>
+  </footer>
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" id="grToastContainer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/mock-data.js"></script>
+  <script src="js/validaciones.js"></script>
+  <script src="js/sesion.js"></script>
+  <script src="js/carrito.js"></script>
+  <script src="js/comun.js"></script>
+  <script src="js/carrito-page.js"></script>
+</body>
+</html>
