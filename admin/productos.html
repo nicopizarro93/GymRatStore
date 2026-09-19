@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="es" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mantenedor de productos - Gymratstore</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <link href="../css/styles.css" rel="stylesheet" />
+</head>
+<body>
+  <div class="gr-admin-shell">
+    <aside class="gr-admin-sidebar">
+      <a class="navbar-brand d-block mb-4" href="../index.html">GYM<span class="text-accent-red">RAT</span>STORE</a>
+      <nav class="nav flex-column gap-1">
+        <a class="nav-link" href="index.html"><i class="bi bi-speedometer2 me-2"></i>Inicio</a>
+        <a class="nav-link active" href="productos.html"><i class="bi bi-box-seam me-2"></i>Productos</a>
+        <a class="nav-link d-none" data-rol="Administrador" href="alumnos.html"><i class="bi bi-people me-2"></i>Alumnos</a>
+        <a class="nav-link" href="ordenes.html"><i class="bi bi-receipt me-2"></i>Órdenes</a>
+        <hr class="border-secondary my-2" />
+        <a class="nav-link" href="../index.html"><i class="bi bi-box-arrow-left me-2"></i>Volver a la tienda</a>
+        <a class="nav-link" href="#" data-accion="cerrar-sesion" data-ir="../index.html"><i class="bi bi-power me-2"></i>Cerrar sesión</a>
+      </nav>
+    </aside>
+
+    <div class="gr-admin-main">
+      <div class="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-4">
+        <div>
+          <h1 class="mb-0">Mantenedor de productos</h1>
+          <p class="text-muted-gr mb-0">Planes de membresía y suplementos.</p>
+        </div>
+        <button type="button" class="btn btn-brand" data-bs-toggle="modal" data-bs-target="#modalProducto" id="btnNuevoProducto">
+          <i class="bi bi-plus-lg me-1"></i>Nuevo producto
+        </button>
+      </div>
+
+      <div class="gr-card p-3 mb-3">
+        <div class="row g-2 align-items-center">
+          <div class="col-12 col-lg-auto">
+            <div class="btn-group" role="group">
+              <input type="radio" class="btn-check" name="filtroTipoAdmin" id="fTodos" value="" checked />
+              <label class="btn btn-outline-light btn-sm" for="fTodos">Todos</label>
+              <input type="radio" class="btn-check" name="filtroTipoAdmin" id="fPlanes" value="Plan" />
+              <label class="btn btn-outline-light btn-sm" for="fPlanes">Planes</label>
+              <input type="radio" class="btn-check" name="filtroTipoAdmin" id="fSuplementos" value="Suplemento" />
+              <label class="btn btn-outline-light btn-sm" for="fSuplementos">Suplementos</label>
+            </div>
+          </div>
+          <div class="col-12 col-lg-4">
+            <input type="text" class="form-control form-control-sm" id="buscarProducto" placeholder="Buscar por código o nombre..." />
+          </div>
+        </div>
+      </div>
+
+      <div class="gr-card p-0">
+        <div class="table-responsive">
+          <table class="table table-gr align-middle mb-0">
+            <thead>
+              <tr>
+                <th>Código</th>
+                <th>Tipo</th>
+                <th>Categoría</th>
+                <th>Nombre</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Stock crítico</th>
+                <th class="text-end">Acciones</th>
+              </tr>
+            </thead>
+            <tbody id="tablaProductos"></tbody>
+          </table>
+        </div>
+      </div>
+      <p class="text-muted-gr text-center py-4 d-none" id="sinProductos">No hay productos que coincidan con la búsqueda.</p>
+    </div>
+  </div>
+
+  <!-- Modal crear/editar producto -->
+  <div class="modal fade" id="modalProducto" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content gr-card">
+        <div class="modal-header border-secondary">
+          <h5 class="modal-title" id="tituloModalProducto">Nuevo producto</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+        </div>
+        <form id="formProducto">
+          <div class="modal-body">
+            <div class="row g-3">
+              <div class="col-md-4">
+                <label class="form-label" for="mTipo">Tipo</label>
+                <select class="form-select" id="mTipo">
+                  <option value="Plan">Plan de gimnasio</option>
+                  <option value="Suplemento">Suplemento</option>
+                </select>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="mCategoria">Categoría</label>
+                <select class="form-select" id="mCategoria"></select>
+                <div class="invalid-feedback"></div>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="mCodigo">Código</label>
+                <input type="text" class="form-control" id="mCodigo" />
+                <div class="invalid-feedback"></div>
+              </div>
+
+              <div class="col-md-6">
+                <label class="form-label" for="mNombre">Nombre</label>
+                <input type="text" class="form-control" id="mNombre" maxlength="100" />
+                <div class="invalid-feedback"></div>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="mImagen">URL de imagen (opcional)</label>
+                <input type="text" class="form-control" id="mImagen" placeholder="https://..." />
+              </div>
+
+              <div class="col-12">
+                <label class="form-label" for="mDescripcion">Descripción (opcional)</label>
+                <textarea class="form-control" id="mDescripcion" rows="3" maxlength="500"></textarea>
+                <div class="invalid-feedback"></div>
+              </div>
+
+              <div class="col-md-4">
+                <label class="form-label" for="mPrecio">Precio (CLP)</label>
+                <input type="number" class="form-control" id="mPrecio" min="0" step="1" />
+                <div class="invalid-feedback"></div>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="mStock">Stock / cupos</label>
+                <input type="number" class="form-control" id="mStock" min="0" step="1" />
+                <div class="invalid-feedback"></div>
+              </div>
+              <div class="col-md-4">
+                <label class="form-label" for="mStockCritico">Stock crítico (opcional)</label>
+                <input type="number" class="form-control" id="mStockCritico" min="0" step="1" />
+                <div class="invalid-feedback"></div>
+              </div>
+            </div>
+            <div id="alertaProducto" class="alert alert-danger mt-3 d-none"></div>
+          </div>
+          <div class="modal-footer border-secondary">
+            <button type="button" class="btn btn-outline-light" data-bs-dismiss="modal">Cancelar</button>
+            <button type="submit" class="btn btn-brand">Guardar producto</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3" id="grToastContainer"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/mock-data.js"></script>
+  <script src="../js/validaciones.js"></script>
+  <script src="../js/sesion.js"></script>
+  <script src="../js/carrito.js"></script>
+  <script src="../js/comun.js"></script>
+  <script src="../js/admin-productos.js"></script>
+</body>
+</html>
