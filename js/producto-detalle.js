@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var esPlan = producto.tipo === "Plan";
   var etiquetaStock = esPlan ? "cupos" : "unidades";
 
-  document.getElementById("detalleIcono").innerHTML = '<i class="bi ' + Data.getIconoCategoria(producto.categoria) + '"></i>';
+  document.getElementById("detalleIcono").innerHTML = window.ProductoUI.mediaProducto(producto);
 
   var badge = document.getElementById("detalleBadgeTipo");
   badge.textContent = producto.categoria;

@@ -5,12 +5,21 @@
 (function (global) {
   "use strict";
 
+  // Foto real del producto si tiene una asignada (imagen), o el ícono de su
+  // categoría como respaldo (por ejemplo, los planes de membresía no tienen foto).
+  function mediaProducto(producto) {
+    var Data = global.GymratstoreData;
+    if (producto.imagen) {
+      return '<img src="' + producto.imagen + '" alt="' + producto.nombre + '" loading="lazy">';
+    }
+    return '<i class="bi ' + Data.getIconoCategoria(producto.categoria) + '"></i>';
+  }
+
   function tarjetaProducto(producto) {
     var Data = global.GymratstoreData;
     var esPlan = producto.tipo === "Plan";
     var badgeClase = esPlan ? "gr-badge-plan" : "gr-badge-suplemento";
     var badgeIcono = esPlan ? "bi-calendar-check" : "bi-cup-straw";
-    var icono = Data.getIconoCategoria(producto.categoria);
     var stockBajo = producto.stockCritico && producto.stock <= producto.stockCritico;
     var etiquetaStock = esPlan ? "cupos" : "unidades";
 
@@ -18,7 +27,7 @@
       '<div class="col-sm-6 col-lg-4 col-xl-3">' +
       '<div class="gr-product-card">' +
       '<a href="producto-detalle.html?codigo=' + encodeURIComponent(producto.codigo) + '" class="text-decoration-none text-reset">' +
-      '<div class="gr-product-media"><i class="bi ' + icono + '"></i></div>' +
+      '<div class="gr-product-media">' + mediaProducto(producto) + "</div>" +
       "</a>" +
       '<div class="gr-product-body">' +
       '<span class="gr-badge-tipo ' + badgeClase + '"><i class="bi ' + badgeIcono + '"></i>' + producto.categoria + "</span>" +
@@ -51,6 +60,7 @@
 
   global.ProductoUI = {
     tarjetaProducto: tarjetaProducto,
+    mediaProducto: mediaProducto,
     activarBotonesAgregar: activarBotonesAgregar,
   };
 })(window);

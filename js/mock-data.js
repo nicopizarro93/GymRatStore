@@ -9,7 +9,7 @@
 
   // Subir este número fuerza un re-seed completo (borra datos de prueba
   // guardados en el navegador y vuelve a cargar la semilla de abajo).
-  var SEED_VERSION = "1";
+  var SEED_VERSION = "2";
 
   var KEYS = {
     seedVersion: "gr_seed_version",
@@ -131,7 +131,7 @@
         precio: 32990,
         stock: 18,
         stockCritico: 5,
-        imagen: "",
+        imagen: "img/proteina-vainilla.jpg",
       },
       {
         codigo: "SUP-WHEY02",
@@ -142,7 +142,7 @@
         precio: 32990,
         stock: 15,
         stockCritico: 5,
-        imagen: "",
+        imagen: "img/proteina-chocolate.jpg",
       },
       {
         codigo: "SUP-CREA01",
@@ -153,7 +153,7 @@
         precio: 18990,
         stock: 22,
         stockCritico: 5,
-        imagen: "",
+        imagen: "img/creatina.jpg",
       },
       {
         codigo: "SUP-PRE01",
@@ -164,7 +164,7 @@
         precio: 21990,
         stock: 12,
         stockCritico: 4,
-        imagen: "",
+        imagen: "img/pre-entreno.jpg",
       },
       {
         codigo: "SUP-VIT01",
@@ -175,7 +175,7 @@
         precio: 14990,
         stock: 30,
         stockCritico: 8,
-        imagen: "",
+        imagen: "img/multivitaminico.jpg",
       },
       {
         codigo: "SUP-ACC01",
@@ -186,7 +186,7 @@
         precio: 6990,
         stock: 40,
         stockCritico: 10,
-        imagen: "",
+        imagen: "img/shaker-gymrat.jpg",
       },
       {
         codigo: "SUP-ACC02",
@@ -197,7 +197,7 @@
         precio: 24990,
         stock: 8,
         stockCritico: 3,
-        imagen: "",
+        imagen: "img/cinturon-levantamiento.jpg",
       },
       {
         codigo: "SUP-SNK01",
@@ -208,7 +208,7 @@
         precio: 15990,
         stock: 20,
         stockCritico: 5,
-        imagen: "",
+        imagen: "img/barritas-proteicas.jpg",
       },
     ];
   }
